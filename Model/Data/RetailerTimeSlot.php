@@ -26,19 +26,25 @@ use Zend\Stdlib\JsonSerializable;
 class RetailerTimeSlot extends DataObject implements RetailerTimeSlotInterface, JsonSerializable
 {
     /**
-     * {@inheritDoc}
+     * @return int
      */
-    public function getStartTime()
+    public function getDayOfWeek()
     {
-        return $this->getData('start_time');
+        return $this->getData(self::DAY_OF_WEEK_FIELD);
     }
 
     /**
-     * {@inheritDoc}
+     * Set the day of week.
+     *
+     * @param int $dayOfWeek The day of week
+     *
+     * @return mixed
      */
-    public function getEndTime()
+    public function setDayOfWeek($dayOfWeek)
     {
-        return $this->getData('end_time');
+        $this->setData(self::DAY_OF_WEEK_FIELD, $dayOfWeek);
+
+        return $this;
     }
 
     /**
@@ -75,5 +81,21 @@ class RetailerTimeSlot extends DataObject implements RetailerTimeSlotInterface, 
             'start_time' => $this->getStartTime(),
             'end_time'   => $this->getEndTime(),
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStartTime()
+    {
+        return $this->getData('start_time');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEndTime()
+    {
+        return $this->getData('end_time');
     }
 }

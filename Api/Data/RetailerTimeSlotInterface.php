@@ -32,6 +32,11 @@ interface RetailerTimeSlotInterface
     const DAY_OF_WEEK_FIELD = 'day_of_week';
 
     /**
+     * @return int
+     */
+    public function getDayOfWeek();
+
+    /**
      * @return string
      */
     public function getStartTime();
@@ -40,6 +45,15 @@ interface RetailerTimeSlotInterface
      * @return string
      */
     public function getEndTime();
+
+    /**
+     * Set the day of week.
+     *
+     * @param int $dayOfWeek Day of week
+     *
+     * @return mixed
+     */
+    public function setDayOfWeek($dayOfWeek);
 
     /**
      * Set the start time
