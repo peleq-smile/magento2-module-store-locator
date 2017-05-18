@@ -39,12 +39,26 @@ interface RetailerTimeSlotInterface
     /**
      * @return string
      */
+    public function getDate();
+
+    /**
+     * @return string
+     */
     public function getStartTime();
 
     /**
      * @return string
      */
     public function getEndTime();
+
+    /**
+     * Set the date.
+     *
+     * @param string $date Date
+     *
+     * @return mixed
+     */
+    public function setDate($date);
 
     /**
      * Set the day of week.
