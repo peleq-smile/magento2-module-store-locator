@@ -31,7 +31,7 @@ class RetailerTimeSlot extends AbstractDb
     /**
      * @var \Magento\Framework\Locale\Resolver
      */
-    private $localeResolver;
+    protected $localeResolver;
 
     /**
      * RetailerTimeSlot constructor.
@@ -165,14 +165,20 @@ class RetailerTimeSlot extends AbstractDb
      *
      * @param string $hour The hour
      *
-     * @return string
+     * @return string|null
      */
-    private function dateFromHour($hour)
+    protected function dateFromHour($hour)
     {
-        $date = new Zend_Date(0, Zend_Date::TIMESTAMP); // Init as 1970-01-01 since field is store on a DATETIME column.
-        $date->setTime($hour);
+        $dateFromHour = null;
 
-        return $date->toString(DateTime::DATETIME_INTERNAL_FORMAT);
+        if (null !== $hour) {
+            $date = new Zend_Date(0, Zend_Date::TIMESTAMP); // Init as 1970-01-01 since field is store on a DATETIME column.
+            $date->setTime($hour);
+
+            $dateFromHour = $date->toString(DateTime::DATETIME_INTERNAL_FORMAT);
+        }
+
+        return $dateFromHour;
     }
 
     /**
@@ -180,13 +186,19 @@ class RetailerTimeSlot extends AbstractDb
      *
      * @param string $date The date
      *
-     * @return string
+     * @return string|null
      */
-    private function dateToHour($date)
+    protected function dateToHour($date)
     {
-        $date = new Zend_Date($date, DateTime::DATETIME_INTERNAL_FORMAT);
-        $date->setLocale($this->localeResolver->getLocale());
+        $dateToHour = null;
 
-        return $date->toString(Zend_Date::TIME_SHORT);
+        if (null !== $date) {
+            $date = new Zend_Date($date, DateTime::DATETIME_INTERNAL_FORMAT);
+            $date->setLocale($this->localeResolver->getLocale());
+
+            $dateToHour = $date->toString(Zend_Date::TIME_SHORT);
+        }
+
+        return $dateToHour;
     }
 }
