@@ -6,7 +6,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://repo.magento.com/"
+            "url": "https://packagist.vitry.intranet/mirror/magento_official/"
         }
     ],
     "require": {

@@ -10,9 +10,9 @@
  * @copyright 2017 Smile
  * @license   Open Software License ("OSL") v. 3.0
  */
+
 namespace Smile\StoreLocator\Model\Data;
 
-use Magento\Framework\DataObject;
 use Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface;
 use Zend\Stdlib\JsonSerializable;
 
@@ -23,7 +23,7 @@ use Zend\Stdlib\JsonSerializable;
  * @package  Smile\StoreLocator
  * @author   Romain Ruaud <romain.ruaud@smile.fr>
  */
-class RetailerTimeSlot extends DataObject implements RetailerTimeSlotInterface, JsonSerializable
+class RetailerTimeSlot extends \Magento\Framework\Model\AbstractExtensibleModel implements RetailerTimeSlotInterface, JsonSerializable
 {
     /**
      * {@inheritDoc}
@@ -111,5 +111,26 @@ class RetailerTimeSlot extends DataObject implements RetailerTimeSlotInterface, 
     public function getEndTime()
     {
         return $this->getData('end_time');
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExtensionAttributes()
+    {
+        $extensionAttributes = $this->_getExtensionAttributes();
+        if (!$extensionAttributes) {
+            return $this->extensionAttributesFactory->create('Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface');
+        }
+
+        return $extensionAttributes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setExtensionAttributes(\Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface $extensionAttributes)
+    {
+        return $this->_setExtensionAttributes($extensionAttributes);
     }
 }

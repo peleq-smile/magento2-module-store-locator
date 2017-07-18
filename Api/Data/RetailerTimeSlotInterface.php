@@ -19,7 +19,7 @@ namespace Smile\StoreLocator\Api\Data;
  * @package  Smile\StoreLocator
  * @author   Romain Ruaud <romain.ruaud@smile.fr>
  */
-interface RetailerTimeSlotInterface
+interface RetailerTimeSlotInterface extends  \Magento\Framework\Api\ExtensibleDataInterface
 {
     /**
      * The date field
