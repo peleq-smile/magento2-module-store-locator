@@ -86,4 +86,20 @@ interface RetailerTimeSlotInterface extends  \Magento\Framework\Api\ExtensibleDa
      * @return mixed
      */
     public function setEndTime($time);
+
+    /**
+     * Retrieve existing extension attributes object or create a new one.
+     *
+     * @return \Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface|null
+     */
+    public function getExtensionAttributes();
+
+    /**
+     * Set an extension attributes object.
+     *
+     * @param \Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface $extensionAttributes The additional attributes
+     *
+     * @return $this
+     */
+    public function setExtensionAttributes(\Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface $extensionAttributes);
 }
