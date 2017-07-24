@@ -129,7 +129,7 @@ class RetailerTimeSlot extends \Magento\Framework\Model\AbstractExtensibleModel 
     /**
      * {@inheritDoc}
      */
-    public function setExtensionAttributes(\Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface $extensionAttributes)
+    public function setExtensionAttributes(\Smile\StoreLocator\Api\Data\RetailerTimeSlotExtensionInterface $extensionAttributes)
     {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
