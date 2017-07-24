@@ -78,9 +78,17 @@ class RetailerTimeSlot extends AbstractDb
                 continue;
             }
 
+            /** @var \Smile\StoreLocator\Model\Data\RetailerTimeSlot $timeSlot */
             foreach ($timeSlotList as $timeSlot) {
+
+                // Handle extension_attributes
+                /** @var \Smile\StoreLocator\Api\Data\RetailerTimeSlotExtension $extensionAttributes */
+                $extensionAttributes = $timeSlot->getExtensionAttributes();
+                $extensionAttributesData = $extensionAttributes->__toArray();
+
                 $data[] = array_merge(
                     $row,
+                    $extensionAttributesData,
                     [
                         'start_time' => $this->dateFromHour($timeSlot->getStartTime()),
                         'end_time'   => $this->dateFromHour($timeSlot->getEndTime()),
