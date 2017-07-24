@@ -18,8 +18,9 @@ namespace Smile\StoreLocator\Api\Data;
  * @category Smile
  * @package  Smile\StoreLocator
  * @author   Romain Ruaud <romain.ruaud@smile.fr>
+ * @author   Perrine Léquipé <perrine.lequipe@smile.fr>
  */
-interface RetailerTimeSlotInterface extends  \Magento\Framework\Api\ExtensibleDataInterface
+interface RetailerTimeSlotInterface extends \Magento\Framework\Api\CustomAttributesDataInterface
 {
     /**
      * The date field
@@ -90,16 +91,16 @@ interface RetailerTimeSlotInterface extends  \Magento\Framework\Api\ExtensibleDa
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface|null
+     * @return \Smile\StoreLocator\Api\Data\RetailerTimeSlotExtensionInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface $extensionAttributes The additional attributes
+     * @param \Smile\StoreLocator\Api\Data\RetailerTimeSlotExtensionInterface $extensionAttributes The additional attributes
      *
      * @return $this
      */
-    public function setExtensionAttributes(\Smile\StoreLocator\Api\Data\RetailerTimeSlotInterface $extensionAttributes);
+    public function setExtensionAttributes(\Smile\StoreLocator\Api\Data\RetailerTimeSlotExtensionInterface $extensionAttributes);
 }
