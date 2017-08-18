@@ -53,11 +53,17 @@ class RetailerTimeSlotConverter
                     $openingHours[$day] = [];
                 }
 
-                if (null !== $row['start_time'] && null !== $row['end_time']) {
-                    $timeSlotModel = $this->timeSlotFactory->create(
-                        ['data' => ['start_time' => $row['start_time'], 'end_time' => $row['end_time']]]
-                    );
-                    $openingHours[$day][] = $timeSlotModel;
+                // Copy and keep only «final data» to put into $openingHours array under $dateField key entry
+                $rowData = $row;
+                unset($rowData['retailer_id'], $rowData['attribute_code'], $rowData[$dateField]);
+
+                // For this «final data» we want access by $dateField, we create an entry only if at least one data is not null
+                foreach ($rowData as $data) {
+                    if ($data !== null) {
+                        $timeSlotModel = $this->timeSlotFactory->create(['data' => $rowData]);
+                        $openingHours[$day][] = $timeSlotModel;
+                        break;
+                    }
                 }
             }
         }
