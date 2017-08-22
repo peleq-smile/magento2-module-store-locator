@@ -12,6 +12,7 @@
  */
 namespace Smile\StoreLocator\Model;
 
+use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Model\AbstractModel;
 use Smile\StoreLocator\Api\Data\RetailerAddressInterface;
 use Smile\Map\Api\Data\GeoPointInterface;
@@ -143,5 +144,17 @@ class RetailerAddress extends AbstractModel
     protected function _construct()
     {
         $this->_init('Smile\StoreLocator\Model\ResourceModel\RetailerAddress');
+    }
+
+    public function beforeSave()
+    {
+        // Validation
+        foreach (['country_id', 'street', 'postcode', 'city', 'coordinates'] as $requiredData) {
+            if (null === $this->getData($requiredData) || empty($this->getData($requiredData))) {
+                throw new CouldNotSaveException(__("Missing $requiredData data."));
+            }
+        }
+
+        return parent::beforeSave();
     }
 }
